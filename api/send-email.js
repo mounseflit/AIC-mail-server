@@ -24,13 +24,13 @@ export default async function handler(req, res) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'litnitimounsef@gmail.com',
-                pass: 'slpnmsoifpcjttbg'
+                user: 'factory@aicrafters.com',
+                pass: 'yxvc tnws psld iaqs'
             }
         });
         
         const mailOptions = {
-            from: 'litnitimounsef@gmail.com',
+            from: 'factory@aicrafters.com',
             to: to,
             cc: cc,
             bcc: bcc,
@@ -51,3 +51,4 @@ export default async function handler(req, res) {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
+
