@@ -14,9 +14,9 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-        const { to, cc, bcc, subject, message, isHtml, attachments } = req.body;
+        const { from, to, cc, bcc, subject, message, isHtml, attachments } = req.body;
 
-        if (!to || !subject || !message) {
+        if ( !to || !subject || !message ) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
@@ -25,12 +25,12 @@ export default async function handler(req, res) {
             service: 'gmail',
             auth: {
                 user: 'factory@aicrafters.com',
-                pass: 'yxvc tnws psld iaqs'
+                pass: 'yxvctnwspsldiaqs'
             }
         });
         
         const mailOptions = {
-            from: 'factory',
+            from: from || "factory@aicrafters.com",
             to: to,
             cc: cc,
             bcc: bcc,
@@ -51,5 +51,6 @@ export default async function handler(req, res) {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
+
 
 
