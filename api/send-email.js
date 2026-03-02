@@ -16,21 +16,22 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { from, to, cc, bcc, subject, message, isHtml, attachments } = req.body;
 
-        if ( !to || !subject || !message ) {
+        if (!to || !subject || !message) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
         // Configure Nodemailer
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.mailgun.org',
+            port: 587,
             auth: {
-                user: 'factory@aicrafters.com',
-                pass: 'yxvctnwspsldiaqs'
+                user: 'orange@aicrafters.com',
+                pass: '&|61)]dQmf0p'
             }
         });
-        
+
         const mailOptions = {
-            from: from || "factory@aicrafters.com",
+            from: from || "orange@aicrafters.com",
             to: to,
             cc: cc,
             bcc: bcc,
@@ -39,7 +40,7 @@ export default async function handler(req, res) {
             attachments: attachments // Array of attachment objects
         };
 
-        
+
         try {
             await transporter.sendMail(mailOptions);
             res.status(200).json({ success: 'Email sent successfully' });
