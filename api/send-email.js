@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         });
 
         const mailOptions = {
-            from: from || "orange@aicrafters.com",
+            from: "AI Crafters",
             to: to,
             cc: cc,
             bcc: bcc,
